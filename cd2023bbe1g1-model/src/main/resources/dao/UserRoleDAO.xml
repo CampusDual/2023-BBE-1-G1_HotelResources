@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+        xmlns="http://www.ontimize.com/schema/jdbc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+        catalog="" schema="${mainschema}" table="roles"
+        datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+    <DeleteKeys>
+        <Column>role_id</Column>
+    </DeleteKeys>
+    <UpdateKeys>
+        <Column>role_id</Column>
+    </UpdateKeys>
+    <GeneratedKey>role_id</GeneratedKey>
+    <Queries>
+        <Query id="default">
+            <ValidColumns>
+                <Column>role_id</Column>
+                <Column>rolename</Column>
+            </ValidColumns>
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM
+                        ${mainschema}.roles
+                    #WHERE#
+                ]]>
+            </Sentence>
+        </Query>
+        <Query id="login">
+            <Sentence>
+                <![CDATA[
+                    SELECT
+                        #COLUMNS#
+                    FROM ${mainschema}.users
+                    #WHERE#
+                    #ORDER#
+                ]]>
+            </Sentence>
+        </Query>
+        <Query id="userRole">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="login_name" prefix="u" />
+                <AmbiguousColumn name="role_id" prefix="r" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+					select
+						#COLUMNS#
+					from
+						${mainschema}.users u
+						JOIN ${mainschema}.roles_users ru ON u.login_name = ru.login_name
+						JOIN ${mainschema}.roles r ON ru.role_id = r.role_id
+					#WHERE#
+					#ORDER#
+					]]>
+            </Sentence>
+        </Query>
+        <Query id="serverPermissions">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="role_id" prefix="r" />
+                <AmbiguousColumn name="server_permission_id" prefix="sp" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+					select
+						#COLUMNS#
+					from
+						${mainschema}.roles r
+						JOIN ${mainschema}.roles_server_permissions rsp ON r.role_id = rsp.role_id
+						JOIN ${mainschema}.server_permissions sp ON rsp.server_permission_id = sp.server_permission_id
+					#WHERE#
+					#ORDER#
+					]]>
+            </Sentence>
+        </Query>
+        <Query id="clientPermissions">
+            <Sentence>
+                <![CDATA[
+					select
+						#COLUMNS#
+					from
+						${mainschema}.roles r
+					#WHERE#
+					#ORDER#
+					]]>
+            </Sentence>
+        </Query>
+        <Query id="userRole">
+            <AmbiguousColumns>
+                <AmbiguousColumn name="login_name" prefix="u" />
+                <AmbiguousColumn name="role_id" prefix="r" />
+            </AmbiguousColumns>
+            <Sentence>
+                <![CDATA[
+					select
+						#COLUMNS#
+					from
+						${mainschema}.users u
+						JOIN ${mainschema}.roles_users ru ON u.login_name = ru.login_name
+						JOIN ${mainschema}.roles r ON  r.role_id = ru.role_id
+					#WHERE#
+					#ORDER#
+					]]>
+            </Sentence>
+        </Query>
+    </Queries>
+</JdbcEntitySetup>

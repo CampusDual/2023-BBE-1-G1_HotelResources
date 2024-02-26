@@ -30,35 +30,29 @@ ontimize:
       upper-like: true
   security:
     mode: default
-    ignore-paths: '/index.html,/app/**,/error,/test,/ontimize/health,/restapi/**,/swagger-ui/**'
+    ignore-paths: '/index.html,/app/**,/error,/test,/ontimize/health,/restapi/**,/swagger-ui/**,/users/signup,/rooms/room/search'
     role-information-service:
-      role-repository: RoleDao
-      role-name-column: rol_name
+      role-repository: UserRoleDAO
+      role-name-column: rolename
       server-permission-query-id: serverPermissions
-      server-permission-name-column: srp_name
+      server-permission-name-column: method
       client-permission-query-id: clientPermissions
-      client-permission-column: rol_xml_client_permission
+      client-permission-column: xml_client_permission
     user-information-service:
-      user-repository: UserDao
-      user-login-column: usr_login
-      user-password-column: usr_password
+      user-repository: UserDAO
+      user-login-column: login_name
+      user-password-column: user_password
       query-id: login
       other-data:
-        - usr_id
-        - usr_login
-        - usr_name
-        - usr_surname
-        - usr_email
-        - usr_notes
-        - usr_phone
-        - usr_creation_date
-        - usr_down_date
-        - usr_photo
+        - user_name
+        - surname1
+        - email
+        - id_document
     user-role-information-service:
-      user-role-repository: UserRoleDao
+      user-role-repository: UsersRolesDAO
       query-id: userRole
-      role-login-column: usr_login
-      role-name-column: rol_name
+      role-login-column: login_name
+      role-name-column: rolename
 server:
   port: 8080
   tomcat:
