@@ -31,10 +31,6 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>cd2023bbe1g1-ws</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>cd2023bbe1g1-frontend</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>org.flywaydb</groupId>
