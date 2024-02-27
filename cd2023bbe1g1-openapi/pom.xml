@@ -36,6 +36,7 @@
 		<ontimize.openapi.generator.maven.plugin.packageName>com.campusdual.cd2023bbe1g1.openapi.core.service</ontimize.openapi.generator.maven.plugin.packageName>
 		<ontimize.openapi.generator.maven.plugin.modelPackageName>com.campusdual.cd2023bbe1g1.openapi.core.dto</ontimize.openapi.generator.maven.plugin.modelPackageName>
 		<ontimize.openapi.generator.maven.plugin.useBeanValidation>true</ontimize.openapi.generator.maven.plugin.useBeanValidation>
+		<ontimize.openapi.swagger-ui.enabled>true</ontimize.openapi.swagger-ui.enabled>
 	</properties>
 	<profiles>
 		<profile>
