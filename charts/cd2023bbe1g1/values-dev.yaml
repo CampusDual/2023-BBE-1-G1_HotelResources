@@ -57,6 +57,10 @@ database:
 ## Provided as basic setup. Configure as needed. Provided instance is dev environment instance
   url: jdbc:postgresql://cd2023bbe1g1-postgresql/cd2023bbe1g1-dev ## injected as DATABASE_URL environment variable
 
+jwt:
+  enabled: false
+  #secret:
+
 ## Observability
 micrometer:
   metrics:

@@ -1,6 +1,6 @@
 ## DESCRIPTION
 
-Application template based in Ontimize Web and Ontimize Boot (java 11).
+Application template based in Ontimize Boot (java 11).
 
 Use this template to generate an application with a standard structure and a predefined Ontimize configuration for Ontimize authentication and a unique database, using PostgreSQL.
 
@@ -45,51 +45,51 @@ This application is ready to be deployed on a local machine, using provided dock
 
 The services required to run the application, such as the database, are provided in a separate file to allow to run the services only and to be able to launch the application from an IDE.
 
- - Go to the application folder
+- Go to the application folder
 
-		cd cd2023bbe1g1
+  	cd <%= baseName %>
 
- - With docker privileges run the following command to start the deployment:
+- With docker privileges run the following command to start the deployment:
 
-		docker-compose up
+  	docker compose up
 
 The application is deployed as a docker container in the url: [http://localhost:8080](http://localhost:8080)
 
- - List the pods:
+- List the pods:
 
-		docker ps
+  	docker ps
 
- - Show the logs of each container:
+- Show the logs of each container:
 
-		docker logs -f id_container
+  	docker logs -f id_container
 
- - Access the console of the container:
+- Access the console of the container:
 
-		docker exec -it id_container sh
+  	docker exec -it id_container sh
 
- - Stop the deployment:
+- Stop the deployment:
 
-		docker-compose down
-		docker volume prune
+  	docker compose down
+  	docker volume prune
 
 ### LOCAL DEPLOYMENT
 
 The parameters in the application-local.yaml file must match the values of the development services, such as the database. By default, the parameters match the values in the docker files.
 
- - Go to the application folder
+- Go to the application folder
 
-		cd cd2023bbe1g1
+  	cd <%= baseName %>
 
- - If a deployment of a development services are not available, run the provided docker compose file to start the services:
+- If a deployment of a development services are not available, run the provided docker compose file to start the services:
 
-		docker-compose -f docker-compose-services.yaml up
+  	docker compose -f docker-compose-services.yaml up
 
- - Compile and deploy the application with the following commands:
+- Compile and deploy the application with the following commands:
 
-		mvn clean install -Plocal
-		java -jar cd2023bbe1g1-boot/target/cd2023bbe1g1-boot.jar --spring.profiles.active=local
+  	mvn clean install -Plocal
+  	java -jar <%= baseName %>-boot/target/<%= baseName %>-boot.jar --spring.profiles.active=local
 
- - The application is accessible using the url: [http://localhost:8080](http://localhost:8080)
+- The application is accessible using the url: [http://localhost:8080](http://localhost:8080)
 
 ## ADDITIONAL INFORMATION
 
@@ -97,42 +97,31 @@ The parameters in the application-local.yaml file must match the values of the d
 
 By default the application provides two users. Adapt as needed:
 
- - Admin:
-    - Role: `Administrator`
-    - Username: `admin`
-    - Password: `adminuser`
+- Admin:
+	- Role: `Administrator`
+	- Username: `admin`
+	- Password: `adminuser`
 
- - Demo:
-    - Role: `User`
-    - Username: `demo`
-    - Password: `demouser`
+- Demo:
+	- Role: `User`
+	- Username: `demo`
+	- Password: `demouser`
 
 ## Ontimize Boot
 
 - Go to the application folder and run an install:
 
-		mvn clean install -Plocal
+  	mvn clean install -Plocal
 
-### Start only the server:
+### Start the application:
 
- - Go to the `cd2023bbe1g1-boot` folder and run the command
+- Go to the `<%= baseName %>-boot` folder and run the command
 
-		mvn spring-boot:run -Dspring-boot.run.profiles=local
+  	mvn spring-boot:run -Dspring-boot.run.profiles=local
 
-### Run the client alone, outside the spring-boot server
+  or go to the `<%= baseName %>-boot/target` folder and run the command
 
- - Go to the `frontend/src/main/ngx` folder, if you have node and npm installed on your system run the following commands:
-
-		npm install
-		npm run start-local
-
-Use the following URL to access the application: [http://localhost:4299](http://localhost:4299)
-
-### Deploy and run client and server together
-
- - Go to the `cd2023bbe1g1-boot/target` folder and run the command
-
-		java -jar cd2023bbe1g1-boot/target/cd2023bbe1g1-boot.jar --spring.profiles.active=local
+  	java -jar <%= baseName %>-boot/target/<%= baseName %>-boot.jar --spring.profiles.active=local
 
 Use the following URL to access the application: [http://localhost:8080](http://localhost:8080)
 
@@ -142,5 +131,5 @@ The application adopts the API-first approach using the [OpenAPI](http://www.ope
 
 The REST API is defined using yaml files and, in compile time, the [Ontimize OpenAPI](http://www.ontimize.com/xwiki/bin/view/Ontimize+Boot/OpenAPI+plugin) plugin generates the models and the controller interfaces that must be implemented on the application.
 
-The Ontimize OpenAPI plugin also provides the Swagger user interface and it will be available for local and compose environments at [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
+The Ontimize OpenAPI plugin also provides the Swagger user interface and it will be available at [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
 

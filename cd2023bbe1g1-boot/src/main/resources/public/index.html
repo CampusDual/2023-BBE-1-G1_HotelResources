@@ -7,19 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <meta http-equiv="refresh" content="0; url=./app/index.html" />-->
     <script type="application/javascript">
-        var url = location.origin;
-        const queryString = window.location.search;
-        if (queryString !== "") {
-            const urlParams = new URLSearchParams(queryString);
-            url = url + "/app/login";
-            const redirect = urlParams.get('redirect');
-            if(redirect && redirect !== '') {
-                url = url + "?redirect=" + redirect;
-            }
-        } else {
-            url = url + "/app/main";
-        }
-        location.href = url;
+      location.href = location.origin + "/swagger-ui/index.html";
      </script>
   </head>
   <body>

@@ -1,0 +1,139 @@
+default:
+  get:
+    tags:
+      - Hotel
+    summary: Returns a list of hotels in the application.
+    description: >
+      Returns a list of hotels in the application.
+    x-restcontroller: orestcontroller
+    parameters:
+      - in: query
+        name: columns
+        description: Columns
+        schema:
+          type: string
+        required: true
+        examples:
+          Hotel name:
+            value: 'name'
+          All columns:
+            value: 'id,name,number_of_floors'
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  post:
+    tags:
+      - Hotel
+    summary: Inserts a new hotel.
+    description: >
+      Inserts a new hotel.
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            Test hotel:
+              value:
+                data:
+                  name: 'Hotel Test'
+                  number_of_floors: 8
+                sqltypes:
+                  name: 12
+                  number_of_floors: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  delete:
+    tags:
+      - Hotel
+    summary: Deletes a hotel.
+    description: >
+      Deletes a hotel.
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
+          examples:
+            Test hotel:
+              value:
+                filter:
+                  id: 17
+                sqltypes:
+                  id: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - Hotel
+    summary: Searches and returns a specific hotel.
+    description: >
+      Searches and returns a specific hotel.
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Id and name:
+              value:
+                filter:
+                  id: 5
+                columns:
+                  - id
+                  - name
+                sqltypes:
+                  id: 4
+            All columns:
+              value:
+                filter:
+                  id: 5
+                columns:
+                  - id
+                  - name
+                  - number_of_floors
+                sqltypes:
+                  id: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
