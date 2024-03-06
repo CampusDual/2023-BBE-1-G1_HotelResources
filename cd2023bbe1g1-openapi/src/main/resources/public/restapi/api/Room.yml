@@ -1,0 +1,172 @@
+default:
+  post:
+    tags:
+      - Room
+    summary: Inserts a new room in a specific hotel.
+    description: >
+      Inserts a new room in a specific hotel.
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            New room:
+              value:
+                data:
+                  room_number: 635
+                  hotel_id: 5
+                  number_of_beds: 3
+                  base_price: 150
+                sqltypes:
+                  room_number: 4
+                  hotel_id: 4
+                  number_of_beds: 4
+                  base_price: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  put:
+    tags:
+      - Room
+    summary: Updates a room.
+    description: >
+      Updates a room.
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
+          examples:
+            Update room (success):
+              value:
+                filter:
+                  id: 17
+                data:
+                  room_number: 631
+                  number_of_beds: 4
+                  base_price: 120
+                sqltypes:
+                  room_number: 4
+                  id: 4
+                  number_of_beds: 4
+                  base_price: 4
+            Update room (error):
+              value:
+                filter:
+                  id: 17
+                data:
+                  room_number: 600
+                  number_of_beds: 4
+                  base_price: 120
+                sqltypes:
+                  room_number: 4
+                  id: 4
+                  number_of_beds: 4
+                  base_price: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  delete:
+    tags:
+      - Room
+    summary: Deletes a room.
+    description: >
+      Deletes a room.
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
+          examples:
+            Test hotel:
+              value:
+                filter:
+                  id: 17
+                sqltypes:
+                  id: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - Room
+    summary: Searches and returns a specific hotel.
+    description: >
+      Searches and returns a specific hotel.
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            By ID:
+              value:
+                filter:
+                  id: 17
+                columns:
+                  - id
+                  - room_number
+                  - hotel_id
+                  - number_of_beds
+                  - base_price
+                sqltypes:
+                  id: 4
+            With BasicExpression:
+              value:
+                filter:
+                  "@basic_expression":
+                    lop: "number_of_beds"
+                    op: ">="
+                    rop: 2
+                columns:
+                  - id
+                  - room_number
+                  - hotel_id
+                  - number_of_beds
+                  - base_price
+                sqltypes:
+                  id: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'

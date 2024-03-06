@@ -13,6 +13,11 @@ paths:
   /hotels/hotel/search:
     $ref: 'api/Hotel.yml#/search'
 
+  /rooms/room:
+    $ref: 'api/Room.yml#/default'
+  /rooms/room/search:
+    $ref: 'api/Room.yml#/search'
+
   /test:
     $ref: 'api/Test.yml#/test'
 
