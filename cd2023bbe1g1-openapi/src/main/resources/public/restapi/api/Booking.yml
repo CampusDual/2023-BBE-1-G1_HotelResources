@@ -1,0 +1,152 @@
+default:
+  post:
+    tags:
+      - Booking
+    summary: Add a new booking (Client, Manager).
+    description: >
+      Add a new booking (Client, Manager). Client → pedro_romero Pedro123 | Manager → manager Manager1234
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            New booking in 2024:
+              value:
+                data:
+                  room_id: 15
+                  departure_date: "2024-08-20"
+                  arrival_date: "2024-08-14"
+                  user_login_name: pedro_romero
+                sqltypes:
+                  room_id: 4
+                  departure_date: 12
+                  arrival_date: 12
+                  user_login_name: 12
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  put:
+    tags:
+      - Booking
+    summary: Updates a existing booking (Client).
+    description: >
+      Updates a existing booking (Client). Client → pedro_romero Pedro123
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
+          examples:
+            Update booking:
+              value:
+                filter:
+                  id: 18
+                data:
+                  departure_date: "2024-09-20"
+                  arrival_date: "2024-09-14"
+                sqltypes:
+                  id: 4
+                  departure_date: 12
+                  arrival_date: 12
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  delete:
+    tags:
+      - Booking
+    summary: Delete an existing bookin (Client).
+    description: >
+      Delete an existing booking (Client). Client → pedro_romero Pedro123
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
+          examples:
+            Delete booking:
+              value:
+                filter:
+                  id: 18
+                sqltypes:
+                  id: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - Booking
+    summary: Searches and return a specific booking (Client).
+    description: >
+      Searches and return a specific booking (Client).
+      Client → pedro_romero Pedro123
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Arrival, departure:
+              value:
+                filter:
+                  id: 6
+                columns:
+                  - arrival_date
+                  - departure_date
+                sqltypes:
+                  id: 4
+            All columns:
+              value:
+                filter:
+                  id: 6
+                columns:
+                  - id
+                  - room_id
+                  - arrival_date
+                  - departure_date
+                  - user_login_name
+                sqltypes:
+                  id: 4
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'

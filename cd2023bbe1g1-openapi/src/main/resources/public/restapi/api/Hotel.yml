@@ -2,9 +2,10 @@ default:
   get:
     tags:
       - Hotel
-    summary: Returns a list of hotels in the application.
+    summary: Returns a list of hotels in the application (Manager).
     description: >
-      Returns a list of hotels in the application.
+      Returns a list of hotels in the application (Manager).
+      Manager → manager Manager1234
     x-restcontroller: orestcontroller
     parameters:
       - in: query
@@ -32,9 +33,10 @@ default:
   post:
     tags:
       - Hotel
-    summary: Inserts a new hotel.
+    summary: Inserts a new hotel (Manager).
     description: >
-      Inserts a new hotel.
+      Inserts a new hotel (Manager).
+      Manager → manager Manager1234
     x-restcontroller: orestcontroller
     requestBody:
       required: true
@@ -65,9 +67,10 @@ default:
   delete:
     tags:
       - Hotel
-    summary: Deletes a hotel.
+    summary: Deletes a hotel (Manager).
     description: >
-      Deletes a hotel.
+      Deletes a hotel (Manager).
+      Manager → manager Manager1234
     x-restcontroller: orestcontroller
     requestBody:
       required: true
@@ -97,9 +100,10 @@ search:
   post:
     tags:
       - Hotel
-    summary: Searches and returns a specific hotel.
+    summary: Searches and returns a specific hotel (Manager).
     description: >
-      Searches and returns a specific hotel.
+      Searches and returns a specific hotel (Manager).
+      Manager → manager Manager1234
     x-restcontroller: orestcontroller
     requestBody:
       content:

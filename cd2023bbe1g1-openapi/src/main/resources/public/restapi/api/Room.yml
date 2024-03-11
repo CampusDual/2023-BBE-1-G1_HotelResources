@@ -2,9 +2,10 @@ default:
   post:
     tags:
       - Room
-    summary: Inserts a new room in a specific hotel.
+    summary: Inserts a new room in a specific hotel (Manager).
     description: >
-      Inserts a new room in a specific hotel.
+      Inserts a new room in a specific hotel (Manager).
+      Manager → manager Manager1234
     x-restcontroller: orestcontroller
     requestBody:
       required: true
@@ -39,9 +40,10 @@ default:
   put:
     tags:
       - Room
-    summary: Updates a room.
+    summary: Updates a room (Manager).
     description: >
-      Updates a room.
+      Updates a room (Manager).
+      Manager → manager Manager1234
     x-restcontroller: orestcontroller
     requestBody:
       required: true
@@ -90,9 +92,10 @@ default:
   delete:
     tags:
       - Room
-    summary: Deletes a room.
+    summary: Deletes a room (Manager).
     description: >
-      Deletes a room.
+      Deletes a room (Manager).
+      Manager → manager Manager1234
     x-restcontroller: orestcontroller
     requestBody:
       required: true
@@ -122,20 +125,24 @@ search:
   post:
     tags:
       - Room
-    summary: Searches and returns a specific hotel.
+    summary: Searches and returns a specific hotel (No auth required).
     description: >
-      Searches and returns a specific hotel.
+      Searches and returns a specific hotel (No auth required).
     x-restcontroller: orestcontroller
+    security: []
     requestBody:
       content:
         application/json:
           schema:
             $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
           examples:
-            By ID:
+            With BasicExpression:
               value:
                 filter:
-                  id: 17
+                  "@basic_expression":
+                    lop: "number_of_beds"
+                    op: ">="
+                    rop: 2
                 columns:
                   - id
                   - room_number
@@ -144,13 +151,10 @@ search:
                   - base_price
                 sqltypes:
                   id: 4
-            With BasicExpression:
+            By ID:
               value:
                 filter:
-                  "@basic_expression":
-                    lop: "number_of_beds"
-                    op: ">="
-                    rop: 2
+                  id: 17
                 columns:
                   - id
                   - room_number
