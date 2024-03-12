@@ -30,6 +30,8 @@ paths:
   /users/signup:
     $ref: 'api/User.yml#/signup'
 
+  /employees/employee:
+    $ref: 'api/Employees.yml#/default'
   /test:
     $ref: 'api/Test.yml#/test'
 

@@ -1,0 +1,119 @@
+default:
+  post:
+    tags:
+      - Employees
+    summary: Inserts a new employee (Manager).
+    description: >
+      Inserts a new employee (Manager).
+      Manager → manager Manager1234
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            Test hotel:
+              value:
+                data:
+                  role_name: receptionist
+                  login_name: arequena
+                  id_document: 44444444A
+                  user_name: Ana
+                  surname1: Requena
+                  country_id: 1
+                  phone_number: "654987654"
+                  email: ana@example.org
+                  user_password: Abc1234.
+                  days_off: [ "friday" ]
+                sqltypes:
+                  role_name: 12
+                  login_name: 12
+                  id_document: 12
+                  user_name: 12
+                  surname1: 12
+                  country_id: 4
+                  phone_number: 12
+                  email: 12
+                  user_password: 12
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  put:
+    tags:
+      - Employees
+    summary: Updates an employee (Manager).
+    description: >
+      Updates an employee (Manager).
+      Manager → manager Manager1234
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
+          examples:
+            Update booking:
+              value:
+                filter:
+                  login_name: arequena
+                data:
+                  phone_number: "645455645"
+                  email: arequena@example.com
+                sqltypes:
+                  phone_number: 12
+                  email: 12
+                  login_name: 12
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  delete:
+    tags:
+      - Employees
+    summary: Deletes an employee (Manager).
+    description: >
+      Deletes an employee (Manager).
+      Manager → manager Manager1234
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/DeleteParameter.yml#/components/schemas/DeleteParameter'
+          examples:
+            Test hotel:
+              value:
+                filter:
+                  login_name: arequena
+                sqltypes:
+                  login_name: 12
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
