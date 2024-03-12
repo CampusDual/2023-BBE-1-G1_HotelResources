@@ -35,6 +35,11 @@ paths:
   /test:
     $ref: 'api/Test.yml#/test'
 
+  /shifts/shift:
+    $ref: 'api/Shift.yml#/default'
+  /shifts/shift/search:
+    $ref: 'api/Shift.yml#/search'
+
 components:
   securitySchemes:
     BasicAuth:

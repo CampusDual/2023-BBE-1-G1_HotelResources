@@ -26,6 +26,7 @@ default:
                   phone_number: "654987654"
                   email: ana@example.org
                   user_password: Abc1234.
+                  hotel_id: 5
                   days_off: [ "friday" ]
                 sqltypes:
                   role_name: 12
@@ -36,6 +37,7 @@ default:
                   country_id: 4
                   phone_number: 12
                   email: 12
+                  hotel_id: 4
                   user_password: 12
     responses:
       '200':

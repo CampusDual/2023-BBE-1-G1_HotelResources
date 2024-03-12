@@ -1,0 +1,152 @@
+default:
+  post:
+    tags:
+      - Shift
+    summary: Inserts a new shift (Manager).
+    description: >
+      Inserts a new shift (Manager).
+      Manager → manager Manager1234
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/InsertParameter.yml#/components/schemas/InsertParameter'
+          examples:
+            Add shift:
+              value:
+                data:
+                  role_name: receptionist
+                  monday:
+                    start: '08:00'
+                    end: '15:00'
+                  tuesday:
+                    start: '08:00'
+                    end: '15:00'
+                  wednesday:
+                    start: '08:00'
+                    end: '15:00'
+                  thursday:
+                    start: '08:00'
+                    end: '15:00'
+                  friday:
+                    start: '10:00'
+                    end: '15:00'
+                  saturday:
+                    start: '10:00'
+                    end: '15:00'
+                  login_names:
+                    - arequena
+                  hotel_id: 5
+                sqltypes:
+                  hotel_id: 4
+                  role_name: 12
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+  put:
+    tags:
+      - Shift
+    summary: Updates an shift (Manager).
+    description: >
+      Updates an shift (Manager).
+      Manager → manager Manager1234
+    x-restcontroller: orestcontroller
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../base/UpdateParameter.yml#/components/schemas/UpdateParameter'
+          examples:
+            Remove shift:
+              value:
+                filter:
+                  id: 37
+                data:
+                  delete_login_names: ["arequena"]
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
+search:
+  post:
+    tags:
+      - Shift
+    summary: Searches and returns a specific hotel (Manager).
+    description: >
+      Searches and returns a specific hotel (Manager).
+      Manager → manager Manager1234
+    x-restcontroller: orestcontroller
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../base/QueryParameter.yml#/components/schemas/QueryParameter'
+          examples:
+            Unique shift:
+              value:
+                filter:
+                  id: 37
+                  employee:
+                    columns:
+                      - user_name
+                      - surname1
+                      - email
+                columns:
+                  - id
+                  - rolename
+                  - monday
+                  - tuesday
+                  - wednesday
+                  - thursday
+                  - friday
+                  - saturday
+                  - sunday
+                sqltypes:
+                  id: 4
+            All columns:
+              value:
+                filter:
+                  employee:
+                    columns:
+                      - user_name
+                      - surname1
+                      - email
+                columns:
+                  - id
+                  - rolename
+                  - monday
+                  - tuesday
+                  - wednesday
+                  - thursday
+                  - friday
+                  - saturday
+                  - sunday
+    responses:
+      '200':
+        $ref: '../base/Responses.yml#/components/responses/EntityResult'
+      '400':
+        $ref: '../base/Responses.yml#/components/responses/BadRequest'
+      '401':
+        $ref: '../base/Responses.yml#/components/responses/Unauthorized'
+      '404':
+        $ref: '../base/Responses.yml#/components/responses/NotFound'
+      default:
+        $ref: '../base/Responses.yml#/components/responses/Unexpected'
